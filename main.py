@@ -27,13 +27,16 @@ async def post():
 
     for user_name in user_list:
         id = threads.get_user_id(user_name)
+        if id is None:
+            print(f"無法獲取 {user_name} 的ID")
+            continue
         try:
             await api.block_user(id)
             print(f"成功封鎖 {user_name}")
-        except Exception as e:
-            print(f"無法封鎖 {user_name}: {e}")
-        #在每次封鎖中間加一段間隔，降低被判定成自動化程式的機率
-        await asyncio.sleep(random.randint(50, 150)/10)
+        except Exception:
+            print(f"無法封鎖 {user_name}")
+        # 在每次封鎖中間加一段間隔，降低被判定成自動化程式的機率
+        await asyncio.sleep(random.randint(5, 15))
     print("封鎖完成")
     
     await api.close_gracefully()
