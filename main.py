@@ -32,7 +32,8 @@ async def post():
             print(f"成功封鎖 {user_name}")
         except Exception as e:
             print(f"無法封鎖 {user_name}: {e}")
-        await asyncio.sleep(random.randint(2, 5))
+        #在每次封鎖中間加一段間隔，降低被判定成自動化程式的機率
+        await asyncio.sleep(random.randint(50, 150)/10)
     print("封鎖完成")
     
     await api.close_gracefully()
