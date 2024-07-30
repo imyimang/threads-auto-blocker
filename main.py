@@ -2,7 +2,6 @@ from threads_api.src.threads_api import ThreadsAPI
 import asyncio
 from metathreads import MetaThreads  
 from get_sheet import get_user_list  
-import random  
 import nest_asyncio
 import json
 
@@ -38,9 +37,7 @@ async def post():
                 print(f"成功封鎖 {user_name}")
             except Exception:
                 print(f"無法封鎖 {user_name}") 
-            # 在每次封鎖中間加一段間隔，降低被判定成自動化程式的機率
-            await asyncio.sleep(random.randint(5, 15))
-            
+
         except Exception:
             print(f"處理 {user_name} 時發生錯誤")
     print("封鎖完成")
