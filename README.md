@@ -13,6 +13,9 @@
 
 當專案無法運行時，請嘗試刪除 `.session.json` 和 `.token`
 
+> [!WARNING]  
+> 使用本專案有**極高的機率**被 Instagram 判定為自動化程式，請自行斟酌
+
 # 前置作業
 將 Threads(Instagram)的帳號密碼 和 表單的連結或路徑 放入 `config.json`
 
@@ -24,9 +27,6 @@ pip install -U -r requirements.txt
 
 # 聲明
 本專案只是一個Threads自動化程式的練習，並沒有任何政治立場
-
-> [!WARNING]  
-> 使用本專案有**極高的機率**被 Instagram 判定為自動化程式，請自行斟酌
 
 # 參考資料
 - [Danie1/threads-api](https://github.com/Danie1/threads-api)
