@@ -2,8 +2,7 @@ import requests as rs
 import csv  
 import re
 
-def get_user_list(sheet):
-    # 定義正則表達式  
+def get_user_list(sheet):  
     pattern = r'https://www\.threads\.net/@\w+'
     
     if re.match(r'https://docs\.google\.com/spreadsheets/.+', sheet):
@@ -15,7 +14,7 @@ def get_user_list(sheet):
                 file.write(res.content)
         else:
             print("無法獲取CSV檔案，請檢查URL。")
-            return set()  # 返回空集合以避免後續處理
+            return set()  
             
         matching_ids = set()
         with open('sheet.csv', 'r', newline='', encoding='utf-8') as file:
