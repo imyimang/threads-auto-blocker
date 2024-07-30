@@ -15,6 +15,7 @@ SHEET = data["SHEET"]
 
 print("正在獲取使用者資料...")
 user_list = get_user_list(SHEET)
+print("正在登入...")
 
 threads = MetaThreads()
 threads.login(ACCOUNT, PASSWORD)
@@ -26,17 +27,22 @@ async def post():
     print(f"成功登入 {ACCOUNT}，開始執行封鎖")
 
     for user_name in user_list:
-        id = threads.get_user_id(user_name)
-        if id is None:
-            print(f"無法獲取 {user_name} 的ID")
-            continue
         try:
-            await api.block_user(id)
-            print(f"成功封鎖 {user_name}")
+            id = threads.get_user_id(user_name)  
+            if id is None:
+                print(f"無法獲取 {user_name} 的ID")
+                continue
+            
+            try:
+                await api.block_user(id)
+                print(f"成功封鎖 {user_name}")
+            except Exception:
+                print(f"無法封鎖 {user_name}") 
+            # 在每次封鎖中間加一段間隔，降低被判定成自動化程式的機率
+            await asyncio.sleep(random.randint(5, 15))
+            
         except Exception:
-            print(f"無法封鎖 {user_name}")
-        # 在每次封鎖中間加一段間隔，降低被判定成自動化程式的機率
-        await asyncio.sleep(random.randint(5, 15))
+            print(f"處理 {user_name} 時發生錯誤")
     print("封鎖完成")
     
     await api.close_gracefully()
