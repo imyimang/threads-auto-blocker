@@ -25,9 +25,6 @@ pip install -U -r requirements.txt
 
 執行 `main.py`
 
-# 聲明
-本專案只是一個Threads自動化程式的練習，並沒有任何政治立場
-
 # 參考資料
 - [Danie1/threads-api](https://github.com/Danie1/threads-api)
 - [iSarabjitDhiman/MetaThreads](https://github.com/iSarabjitDhiman/MetaThreads)
